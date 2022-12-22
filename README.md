@@ -1,5 +1,7 @@
 # zoomer-guide-to-c
 
+> A Zoomer's Guide to C Programming
+
 
 ## Copyright
 
