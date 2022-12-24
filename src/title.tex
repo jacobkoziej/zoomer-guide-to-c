@@ -1,0 +1,35 @@
+% SPDX-License-Identifier: CC-BY-NC-SA-4.0
+%
+% title.tex -- title page
+% Copyright (C) 2022  Jacob Koziej <jacobkoziej@gmail.com>
+
+\thispagestyle{empty}
+
+\newgeometry{
+	hscale=0.8,
+	rmargin=0pt,
+}
+
+\resizebox{0.8\textwidth}{!}{
+	\parbox{0.6\textwidth}{
+		\begin{FlushRight}
+			\slshape
+			\Large
+			\hspace{6em} A Zoomer's Guide to \\
+			\vspace{-1ex}
+			\bfseries
+			\Huge
+			\hspace{1em} C Programming
+		\end{FlushRight}
+
+		\vspace{-1em}
+		\rule{\linewidth}{3pt}
+
+		\begin{FlushRight}
+			\scshape
+			\hspace{16em} Jacob Koziej
+		\end{FlushRight}
+	}
+}
+
+\restoregeometry
