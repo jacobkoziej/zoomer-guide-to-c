@@ -2,6 +2,7 @@
 #
 # Copyright (C) 2022  Jacob Koziej <jacobkoziej@gmail.com>
 
+BIN    := bin
 SRC    := src
 BUILD  ?= build
 TEXSRC := $(shell find $(SRC) -type f -name '*.tex')
@@ -14,6 +15,7 @@ LUALATEXFLAGS += \
 
 
 export TEXINPUTS := $(SRC):$(TEXINPUTS)
+export VERSION   := $(shell $(BIN)/version.sh)
 
 
 .PHONY: all
