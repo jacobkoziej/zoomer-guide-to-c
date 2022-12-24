@@ -35,3 +35,4 @@ $(BUILD)/zoomer-guide-to-c.pdf: $(TEXSRC) | $(BUILD)
 
 %.pdf:
 	$(LUALATEX) $(LUALATEXFLAGS) $(notdir $(@:.pdf=.tex))
+	$(LUALATEX) $(LUALATEXFLAGS) $(notdir $(@:.pdf=.tex))
