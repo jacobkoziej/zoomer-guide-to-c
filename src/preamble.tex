@@ -11,6 +11,17 @@
 \usepackage{graphicx}
 \usepackage{ragged2e}
 
+\usepackage[
+	kpsewhich,
+	outputdir=\directlua{tex.print(os.getenv('BUILD'))},
+]{minted}
+\setminted{
+	breaklines,
+	fontsize=\small,
+	linenos,
+	obeytabs,
+}
+
 \usepackage{hyperref}
 \hypersetup{
 	colorlinks,

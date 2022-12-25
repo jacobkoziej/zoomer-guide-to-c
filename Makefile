@@ -11,9 +11,11 @@ LUALATEX      := lualatex
 LUALATEXFLAGS += \
 	--halt-on-error \
 	--interaction=nonstopmode \
-	--output-directory='$(BUILD)'
+	--output-directory='$(BUILD)' \
+	--shell-escape
 
 
+export BUILD
 export TEXINPUTS := $(SRC):$(TEXINPUTS)
 export VERSION   := $(shell $(BIN)/version.sh)
 
