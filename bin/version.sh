@@ -6,4 +6,4 @@
 
 VERSION=$(git describe --always --broken --dirty --tags 2> /dev/null)
 
-echo "${VERSION:-v0.0.0}"
+echo "${VERSION:-v?.?.?}"
