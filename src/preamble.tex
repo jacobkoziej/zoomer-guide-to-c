@@ -21,3 +21,22 @@
 		Keywords = {C, programming},
 	},
 }
+
+\makeatletter
+\RenewDocumentCommand{\cleardoublepage}{}{
+	\clearpage
+	\if@twoside
+		\ifodd\c@page\else
+			\begingroup
+			\hbox{}
+			\thispagestyle{empty}
+			\newpage
+			\if@twocolumn
+				\hbox{}
+				\newpage
+			\fi
+			\endgroup
+		\fi
+	\fi
+}
+\makeatother
