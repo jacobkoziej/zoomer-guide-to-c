@@ -16,6 +16,7 @@ LUALATEXFLAGS += \
 
 
 export BUILD
+export LUA_PATH  := $(SRC)/?;$(SRC)/?.lua;;
 export TEXINPUTS := $(SRC):$(TEXINPUTS)
 export VERSION   := $(shell $(BIN)/version.sh)
 
