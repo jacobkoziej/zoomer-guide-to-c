@@ -10,7 +10,7 @@ CSRC   := $(shell find $(SRC) -type f -name '*.c')
 LUASRC := $(shell find $(SRC) -type f -name '*.lua')
 TEXSRC := $(shell find $(SRC) -type f -name '*.tex')
 
-LUALATEX      := lualatex
+LUALATEX      ?= lualatex
 LUALATEXFLAGS += \
 	--halt-on-error \
 	--interaction=nonstopmode \
