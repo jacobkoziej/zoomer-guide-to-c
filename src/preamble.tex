@@ -36,6 +36,12 @@
 
 \directlua{zgtc = require('zgtc')}
 
+\NewDocumentCommand{\inputlicenselessminted}{mm}{
+	\inputminted[
+		lastline=\directlua{tex.print(zgtc.lines('#2'))},
+	]{#1}{#2}
+}
+
 \makeatletter
 \RenewDocumentCommand{\cleardoublepage}{}{
 	\clearpage
