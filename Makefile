@@ -5,15 +5,21 @@
 BIN    := bin
 SRC    := src
 BUILD  ?= build
+
+CSRC   := $(shell find $(SRC) -type f -name '*.c')
+LUASRC := $(shell find $(SRC) -type f -name '*.lua')
 TEXSRC := $(shell find $(SRC) -type f -name '*.tex')
 
 LUALATEX      := lualatex
 LUALATEXFLAGS += \
 	--halt-on-error \
 	--interaction=nonstopmode \
-	--output-directory='$(BUILD)'
+	--output-directory='$(BUILD)' \
+	--shell-escape
 
 
+export BUILD
+export LUA_PATH  := $(SRC)/?;$(SRC)/?.lua;;
 export TEXINPUTS := $(SRC):$(TEXINPUTS)
 export VERSION   := $(shell $(BIN)/version.sh)
 
@@ -32,7 +38,7 @@ $(BUILD):
 	@echo '*' > $(BUILD)/.gitignore
 
 
-$(BUILD)/zoomer-guide-to-c.pdf: $(TEXSRC) | $(BUILD)
+$(BUILD)/zoomer-guide-to-c.pdf: $(CSRC) $(LUASRC) $(TEXSRC) | $(BUILD)
 
 
 %.pdf:

@@ -9,7 +9,19 @@
 }
 
 \usepackage{graphicx}
+\usepackage{luapackageloader}
 \usepackage{ragged2e}
+
+\usepackage[
+	kpsewhich,
+	outputdir=\directlua{tex.print(os.getenv('BUILD'))},
+]{minted}
+\setminted{
+	breaklines,
+	fontsize=\small,
+	linenos,
+	obeytabs,
+}
 
 \usepackage{hyperref}
 \hypersetup{
@@ -20,6 +32,14 @@
 		Subject  = C Programming,
 		Keywords = {C, programming},
 	},
+}
+
+\directlua{zgtc = require('zgtc')}
+
+\NewDocumentCommand{\inputlicenselessminted}{mm}{
+	\inputminted[
+		lastline=\directlua{tex.print(zgtc.lines('#2'))},
+	]{#1}{#2}
 }
 
 \makeatletter
