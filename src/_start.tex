@@ -1,0 +1,111 @@
+% SPDX-License-Identifier: CC-BY-NC-SA-4.0
+%
+% start.tex -- first instructions
+% Copyright (C) 2022  Jacob Koziej <jacobkoziej@gmail.com>
+
+\chapter{\texttt{\_start}}
+
+It only feels right to \mintinline{c}{_start} with a few instructions to
+get us ready for the \mintinline{c}{main()} matter of the book.  Jokes
+aside, there are a few things that are important to touch upon before we
+cover any material.  Much how \mintinline{c}{_start} prepares our
+program before its call to \mintinline{c}{main()}, we must do the same
+as the execution of the rest of this book depends on us soundly getting
+off the ground!
+
+\section{A Unix-Like Environment}
+
+This book will be running under the assumption that you're working in a
+Unix-like environment, more specifically, a Linux-based environment.
+macOS users, you'll most likely be able to follow along for most of the
+book, but beware, there are slight nuances between Linux and macOS!
+Windows users, sorry, but you're out of luck here, though you may have
+varied luck with the Windows Subsystem for Linux\footnote{\url{https://%
+learn.microsoft.com/en-us/windows/wsl/about}}.
+
+If you are not already working in a Linux-based environment, I highly
+recommend you get into one while going through this book, as it's the
+most convenient to work with for C development.  Possible options
+include, but are not limited to: a full Linux install, a dual-boot Linux
+install, or a virtual machine installation (though the latter is rather
+lackluster).
+
+\section{The Right Editor}
+
+Choosing the right editor is imperative if you are to benefit the most
+from this book.  It is for this very reason I \emph{strongly} advise
+against using \textbf{any} form of IDE.  The reason for this is simple:
+they hide the steps required to get from source code to an executable
+that your machine can run.  An IDE is fine for a seasoned C programmer;
+but detrimental to someone just starting, as you'll have no idea how a
+compilation error came to fruition. If you're struggling to find a good
+editor, I recommend Neovim\footnote{\url{https://neovim.io/}}.
+
+Another thing is autocompletion: it is the bane of all evil when you're
+learning a language.  It's understandable if you wish to be fast, but
+you're here to \emph{learn}, not press \key{Tab}!  Disable it if your
+editor enables it by default.  You'll thank me later.
+
+\section{Indentation}
+
+Setting your editor's indents to 8 characters wide does two things: it
+makes indents clear and makes it irritating to write deeply nested code.
+The latter point is of particular importance.
+
+Many editors allow you to add a colored column at a specified position.
+I recommend adding one at 80 characters.  The number 80 originates from
+when terminals were \(24 \times 80\) characters in size.  Once added,
+don't allow your code to exceed this limit (within reason).
+
+It may seem strange to intentionally constrain ourselves to what used to
+be a technological limitation, but it serves a great purpose: it forces
+us to write better code!  Once indentation exceeds a few levels, you'll
+notice that it becomes exhausting to stay within the 80-character limit;
+this is a telltale sign that it may be time to step back and restructure
+your code.  Do this, and you'll avoid what I call nesting hell!
+
+\section{File Organization \& Version Control}
+
+Keeping a well-organized file structure is critical to building complex
+software.  This book follows a systematic format for the exercises in
+each chapter, so it shouldn't be too difficult to create a file
+structure that best works for \emph{you}.  I'm intentionally keeping
+this vague as I believe learning how to best structure projects comes
+from trial and error, browsing other people's projects, and taking notes
+on what does and doesn't work.
+
+I would also like to recommend creating a Git\footnote{\url{https://%
+git-scm.com/}} repository to track your work for the exercises.  A
+version control system is important for maintaining any complex project,
+as it allows for safe experimentation and easy rollbacks, among many
+other great things!  Again, I'm intentionally keeping this vague to
+encourage you to explore Git on your own time.  If you're new to Git or
+have never heard of it before, I highly recommend starting with MIT's
+Missing Semester lecture\footnote{\url{https://missing.csail.mit.edu/%
+2020/version-control/}}.
+
+\section{Breaks}
+
+I think it goes without saying, but you're \emph{not} going to become a
+C programmer overnight.  There's no shortcut I know of around all the
+head-banging and hair-pulling.  All I can do is provide you with the
+best path I can pave; it's up to you to do the walking.
+
+You'll learn more if you learn in lots of small chunks than a few big
+blocks of your time.  That time between sessions is when your brain has
+the time to digest all the information it has just absorbed.  Don't rob
+your mind of that thinking time.  You'll be amazed by all the places
+that'll take you.
+
+Most of all, don't let frustration get the best of you.  An important
+skill to have is knowing when to stop.  Take a break, and come back with
+a fresh mind.  I guarantee you'll have a different perspective on what's
+blocking you.
+
+\section{Solutions}
+
+As my final warning, resist the urge to check solutions to exercises
+until you've exhausted all other resources.  You're robbing yourself of
+a learning experience otherwise.  Solutions are a double-edged sword:
+use them to get yourself out of a dead end, not as a crutch to cheat
+your way through this book!
