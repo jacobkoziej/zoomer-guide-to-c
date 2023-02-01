@@ -5,7 +5,7 @@
 project(
         'zoomer-guide-to-c',
         'c',
-        version : '0.0.0',
+        version : 'v0.0.0',
         license : 'GPL-3.0-or-later',
         default_options : [
                 'c_std=c17',
@@ -13,3 +13,12 @@ project(
         ],
         meson_version : '>=1.0.0',
 )
+
+
+# programs
+git         = find_program('git', required : false)
+lualatex    = find_program('lualatex')
+lualatex_sh = find_program('bin/lualatex.sh')
+
+
+subdir('src')
