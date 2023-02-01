@@ -2,6 +2,4 @@
 #
 # Copyright (C) 2023  Jacob Koziej <jacobkoziej@gmail.com>
 
-zgtc_sources += files(
-        'Q_rsqrt.c',
-)
+subdir('zgtc')

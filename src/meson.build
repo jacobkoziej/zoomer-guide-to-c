@@ -5,10 +5,8 @@
 build_dir = meson.current_build_dir()
 src_dir   = meson.current_source_dir()
 
-zgtc_env = environment()
 zgtc_env.prepend('TEXINPUTS', src_dir)
 zgtc_env.prepend('TEXINPUTS', ':' + build_dir)
-zgtc_env.prepend('LUA_PATH', src_dir + '/?;' + src_dir + '/?.lua;;')
 
 unset_variable('build_dir')
 unset_variable('src_dir')
@@ -30,8 +28,7 @@ vcs_tag_tex = vcs_tag(
 )
 
 
-# report version into a file or something!
-zgtc_src = files(
+zgtc_sources += files(
         '_start.tex',
         'copyright.tex',
         'preamble.tex',
@@ -39,9 +36,7 @@ zgtc_src = files(
         'title.tex',
 )
 
-zgtc_src += files(
-        'zgtc.lua',
-)
+zgtc_targets += vcs_tag_tex
 
 
 subdir('preface.d')
@@ -51,8 +46,8 @@ zgtc = custom_target(
         output : 'zoomer-guide-to-c.pdf',
         input  : [
                 'zoomer-guide-to-c.tex',
-                zgtc_src,
-                vcs_tag_tex,
+                zgtc_sources,
+                zgtc_targets,
         ],
         command : [
                 lualatex_sh,

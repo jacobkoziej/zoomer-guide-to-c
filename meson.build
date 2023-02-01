@@ -21,4 +21,10 @@ lualatex    = find_program('lualatex')
 lualatex_sh = find_program('bin/lualatex.sh')
 
 
+zgtc_env     = environment()
+zgtc_sources = [ ]
+zgtc_targets = [ ]
+
+
+subdir('lib')
 subdir('src')
