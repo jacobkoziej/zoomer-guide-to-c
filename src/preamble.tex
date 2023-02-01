@@ -1,7 +1,7 @@
 % SPDX-License-Identifier: CC-BY-NC-SA-4.0
 %
 % preamble.tex -- document configuration
-% Copyright (C) 2022  Jacob Koziej <jacobkoziej@gmail.com>
+% Copyright (C) 2022--2023  Jacob Koziej <jacobkoziej@gmail.com>
 
 \usepackage{geometry}
 \geometry{
@@ -14,7 +14,7 @@
 
 \usepackage[
 	kpsewhich,
-	outputdir=\directlua{tex.print(os.getenv('BUILD'))},
+	outputdir=\directlua{tex.print(os.getenv('OUTDIR'))},
 ]{minted}
 \setminted{
 	breaklines,
@@ -66,3 +66,5 @@
 	\fi
 }
 \makeatother
+
+\input{vcs-tag}
