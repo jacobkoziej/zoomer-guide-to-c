@@ -6,7 +6,7 @@
 
 # lualatex.sh @INPUT0@ @OUTPUT0@ @PRIVATE_DIR@ ...
 
-set -eou
+set -eux
 
 INPUT="${1##*/}"
 shift
