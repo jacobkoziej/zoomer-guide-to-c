@@ -31,6 +31,7 @@ vcs_tag_tex = vcs_tag(
 zgtc_sources += files(
         '_start.tex',
         'copyright.tex',
+        'hello-world.tex',
         'preamble.tex',
         'preface.tex',
         'title.tex',
