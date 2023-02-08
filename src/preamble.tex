@@ -18,7 +18,6 @@
 ]{minted}
 \setminted{
 	breaklines,
-	fontsize=\small,
 	linenos,
 	obeytabs,
 }
@@ -40,7 +39,15 @@
 
 \NewDocumentCommand{\inputlicenselessminted}{mm}{
 	\inputminted[
+		fontsize=\small,
 		lastline=\directlua{tex.print(zgtc.lines('#2'))},
+	]{#1}{#2}
+}
+
+\NewDocumentCommand{\inputlinesminted}{mmmm}{
+	\inputminted[
+		firstline=#3,
+		lastline=#4,
 	]{#1}{#2}
 }
 
