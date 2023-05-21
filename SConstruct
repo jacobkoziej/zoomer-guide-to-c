@@ -22,3 +22,13 @@ if term := os.environ.get('TERM'):
     env['ENV']['TERM'] = term
 
 Export('env')
+
+
+build = 'build'
+src   = 'src'
+
+VariantDir(build, src)
+
+SConscript([
+    f'{build}/SConscript',
+])
