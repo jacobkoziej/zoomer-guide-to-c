@@ -22,6 +22,13 @@ env = Environment()
 if term := os.environ.get('TERM'):
     env['ENV']['TERM'] = term
 
+env.Replace(PDFLATEX='lualatex')
+env.AppendUnique(PDFLATEXFLAGS=[
+    '--halt-on-error',
+    '--interaction=nonstopmode',
+    '--shell-escape',
+])
+
 git = env.WhereIs('git')
 
 Export('env')

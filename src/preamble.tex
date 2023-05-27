@@ -12,10 +12,7 @@
 \usepackage{luapackageloader}
 \usepackage{ragged2e}
 
-\usepackage[
-	kpsewhich,
-	outputdir=\directlua{tex.print(os.getenv('OUTDIR'))},
-]{minted}
+\usepackage{minted}
 \setminted{
 	breaklines,
 	fontsize=\small,
@@ -33,6 +30,7 @@
 		Keywords = {C, programming},
 	},
 }
+\usepackage{bookmark}
 
 \setcounter{chapter}{-1}
 
