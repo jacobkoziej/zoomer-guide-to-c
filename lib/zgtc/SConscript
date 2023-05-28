@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Copyright (C) 2023  Jacob Koziej <jacobkoziej@gmail.com>
+
+Import('env')
+
+
+env.AppendENVPath('LUA_PATH', Dir('lua').abspath + '/?', sep=';')
+env.AppendENVPath('LUA_PATH', Dir('lua').abspath + '/?.lua', sep=';')

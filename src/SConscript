@@ -1,0 +1,30 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Copyright (C) 2023  Jacob Koziej <jacobkoziej@gmail.com>
+
+Import('env')
+Import('version')
+
+
+zgtc_src = [ ]
+
+Export('zgtc_src')
+
+
+version_tex = env.Substfile(
+    'version.tex.in',
+    SUBST_DICT={'@VERSION@' : version})
+
+
+zgtc_src += Glob('*.tex')
+zgtc_src += version_tex
+
+
+SConscript([
+    'hello-world.d/SConscript',
+    'preface.d/SConscript',
+])
+
+
+zgtc = env.PDF('zoomer-guide-to-c.tex')
+env.Depends(zgtc, zgtc_src)
