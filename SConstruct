@@ -47,8 +47,8 @@ if git:
 build = 'build'
 src   = 'src'
 
-VariantDir(build, src)
+VariantDir(build + '/' + src, src)
 
 SConscript([
-    f'{build}/SConscript',
+    f'{build}/src/SConscript',
 ])
