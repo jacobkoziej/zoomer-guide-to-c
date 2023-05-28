@@ -37,12 +37,10 @@ Export('git')
 
 # use git version if possible
 if git:
-    def version():
-        return subprocess.run(
-            [git, 'describe', '--always', '--broken', '--dirty', '--tags'],
-            capture_output=True,
-            encoding='utf-8').stdout.strip()
-
+    version = subprocess.run(
+        [git, 'describe', '--always', '--broken', '--dirty', '--tags'],
+        capture_output=True,
+        encoding='utf-8').stdout.strip()
     Export('version')
 
 

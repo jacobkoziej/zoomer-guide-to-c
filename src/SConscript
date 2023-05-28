@@ -18,10 +18,10 @@ Export('zgtc_src')
 version_tex = env.Substfile(
     'version.tex.in',
     SUBST_DICT={'@VERSION@' : version})
-env.AlwaysBuild(version_tex)
+env.Depends(version_tex, zgtc_src)
 
 
-zgtc_src += Glob('*.tex', exclude='zoomer-guide-to-c.tex')
+zgtc_src += Glob('*.tex')
 zgtc_src += version_tex
 zgtc_src += ['zgtc.lua']
 
