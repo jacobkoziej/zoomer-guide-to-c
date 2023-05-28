@@ -48,6 +48,7 @@ build = 'build'
 src   = 'src'
 
 VariantDir(build + '/' + src, src)
+Clean(build, build)
 
 SConscript([
     f'{build}/src/SConscript',
