@@ -31,11 +31,11 @@ understand any of this is by breaking it down, line by line!
 \inputlinesminted{c}{hello-world.d/hello-world.c}{1}{1}
 
 \noindent
-Our first line concerns us with a \emph{C preprocessor directive}. These
-directives are picked up by the \emph{preprocessor} and \emph{modify}
+Our first line concerns us with a \vocab{C preprocessor directive}.
+These directives are picked up by the \vocab{preprocessor} and modify
 the contents of our source code before handing it off to the compiler.
 In our case, we're asking for the preprocessor to include the contents
-of the \mintinline{c}{stdio.h} \emph{header} in our source code.  We'll
+of the \mintinline{c}{stdio.h} \vocab{header} in our source code.  We'll
 cover where the preprocessor finds these files in a later section when
 we cover the compilation process, but for now, all you need to know is
 that by including a file, we gain access to library functions.
@@ -43,36 +43,36 @@ that by including a file, we gain access to library functions.
 \inputlinesminted{c}{hello-world.d/hello-world.c}{4}{4}
 
 \noindent
-Here we have the beginning of a \emph{function definition}.  Simmilar to
-how we may define a word with a sequence of other words, we can define a
-function as a sequence of operations and other functions.  Unlike the
-definition of words, the compiler needs some help understanding where
-our new function fits into the world; this comes in the form of an
-optional \emph{return type} and an optional list of \emph{parameters}.
-In our case, we intend to return an \mintinline{c}{int} and denote no
-parameters with \mintinline{c}{void}.  What's also important to note
-here is that \mintinline{c}{main()} is a special function as it serves
-as our program's \emph{entry point}.
+Here we have the beginning of a \vocab{function definition}.  Simmilar
+to how we may define a word with a sequence of other words, we can
+define a function as a sequence of operations and other functions.
+Unlike the definition of words, the compiler needs some help
+understanding where our new function fits into the world; this comes in
+the form of an optional \vocab{return type} and an optional list of
+\vocab{parameters}. In our case, we intend to return an \mintinline%
+{c}{int} and denote no parameters with \mintinline{c}{void}.  What's
+also important to note here is that \mintinline{c}{main()} is a special
+function as it serves as our program's \vocab{entry point}.
 
 \inputlinesminted{c}{hello-world.d/hello-world.c}{5}{5}
 
 \noindent
 Although we've told the compiler our intentions for a function
 definition, we must now somehow delineate the start of the
-\emph{function body}.  In C, we do this with a left curly brace.
+\vocab{function body}.  In C, we do this with a left curly brace.
 
 \inputlinesminted{c}{hello-world.d/hello-world.c}{6}{6}
 
 \noindent
-Here is our first \emph{function call}.  In C, we call functions by
-writing their \emph{identifier} and appending a set of parenthesis with
-the required \emph{arguments}.  Although not shown here, we can also
+Here is our first \vocab{function call}.  In C, we call functions by
+writing their \vocab{identifier} and appending a set of parenthesis with
+the required \vocab{arguments}.  Although not shown here, we can also
 store the returned value of non-\mintinline{c}{void} function calls.
 
-For our call to \mintinline{c}{printf()}, we've provided the \emph{%
+For our call to \mintinline{c}{printf()}, we've provided the \vocab{%
 string literal} argument, \mintinline{c}{"Hello World!\n"}.  What's
 important to notice here is the \mintinline{c}{'\n'} at the end of the
-string. We call this an \emph{escape sequence}, as it allows us to
+string.  We call this an \vocab{escape sequence}, as it allows us to
 easily type special characters such as newline.
 
 \inputlinesminted{c}{hello-world.d/hello-world.c}{8}{8}
@@ -80,7 +80,7 @@ easily type special characters such as newline.
 \noindent
 Before we finish our function, we must specify a return value.  What's
 special about \mintinline{c}{main()} is that the value we return here is
-interpreted as our program's \emph{exit code} by the operating system.
+interpreted as our program's \vocab{exit code} by the operating system.
 By convention, a value of zero is considered a sucessful execution of a
 program.  Conversely, any non-zero exit code is an error.  Often times,
 programs return different non-zero values here to signify different
