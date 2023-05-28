@@ -18,7 +18,6 @@ Export('zgtc_src')
 version_tex = env.Substfile(
     'version.tex.in',
     SUBST_DICT={'@VERSION@' : version})
-env.Depends(version_tex, zgtc_src)
 
 
 zgtc_src += Glob('*.tex')
