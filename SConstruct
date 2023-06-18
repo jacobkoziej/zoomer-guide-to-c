@@ -25,7 +25,6 @@ if term := os.environ.get('TERM'):
 env.Replace(PDFLATEX='lualatex')
 env.AppendUnique(PDFLATEXFLAGS=[
     '--halt-on-error',
-    '--interaction=nonstopmode',
     '--shell-escape',
 ])
 
