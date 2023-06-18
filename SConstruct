@@ -19,6 +19,9 @@ Export('version')
 
 env = Environment(tools=['default', 'CommandOutput'])
 
+if path := os.environ.get('PATH'):
+    env['ENV']['PATH'] = path
+
 if term := os.environ.get('TERM'):
     env['ENV']['TERM'] = term
 
