@@ -25,6 +25,8 @@ if path := os.environ.get('PATH'):
 if term := os.environ.get('TERM'):
     env['ENV']['TERM'] = term
 
+env.Replace(CC='clang')
+
 env.Replace(PDFLATEX='lualatex')
 env.AppendUnique(PDFLATEXFLAGS=[
     '--halt-on-error',
