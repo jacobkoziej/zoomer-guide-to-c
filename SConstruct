@@ -17,7 +17,7 @@ Export('license')
 Export('version')
 
 
-env = Environment()
+env = Environment(tools=['default', 'CommandOutput'])
 
 if term := os.environ.get('TERM'):
     env['ENV']['TERM'] = term
