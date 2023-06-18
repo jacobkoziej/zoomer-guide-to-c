@@ -3,7 +3,6 @@
 # Copyright (C) 2023  Jacob Koziej <jacobkoziej@gmail.com>
 
 Import('env')
-Import('zgtc_src')
 
 
 hello_world_sh = env.Substfile('hello-world.sh.in', SUBST_DICT={'@CC@' : '$CC'})
@@ -17,7 +16,7 @@ run_hello_world_output = env.CommandOutput('run-hello-world.sh')
 env.Depends(run_hello_world_output, hello_world_output)
 
 
-zgtc_src += Glob('*.c')
-zgtc_src += hello_world_sh
-zgtc_src += hello_world_output
-zgtc_src += run_hello_world_output
+env['zgtc'] += Glob('*.c')
+env['zgtc'] += hello_world_sh
+env['zgtc'] += hello_world_output
+env['zgtc'] += run_hello_world_output

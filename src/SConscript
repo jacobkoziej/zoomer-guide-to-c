@@ -6,18 +6,13 @@ Import('env')
 Import('version')
 
 
-zgtc_src = [ ]
-
-Export('zgtc_src')
-
-
 version_tex = env.Substfile(
     'version.tex.in',
     SUBST_DICT={'@VERSION@' : version})
 
 
-zgtc_src += Glob('*.tex')
-zgtc_src += version_tex
+env['zgtc'] += Glob('*.tex')
+env['zgtc'] += version_tex
 
 
 SConscript([
@@ -27,4 +22,6 @@ SConscript([
 
 
 zgtc = env.PDF('zoomer-guide-to-c.tex')
-env.Depends(zgtc, zgtc_src)
+env.Depends(zgtc, env['zgtc'])
+
+Export('zgtc')

@@ -17,6 +17,11 @@ Export('license')
 Export('version')
 
 
+build = 'build'
+lib   = 'lib/zgtc'
+src   = 'src'
+
+
 env = Environment(tools=['default', 'CommandOutput'])
 
 if path := os.environ.get('PATH'):
@@ -33,7 +38,8 @@ env.AppendUnique(PDFLATEXFLAGS=[
     '--shell-escape',
 ])
 
-git = env.WhereIs('git')
+git    = env.WhereIs('git')
+python = env.WhereIs('python')
 
 Export('env')
 Export('git')
@@ -48,9 +54,24 @@ if git:
     Export('version')
 
 
-build = 'build'
-lib   = 'lib/zgtc'
-src   = 'src'
+env['zgtc'] = [ ]
+
+
+# virtual environment
+venv_path = env.Dir(f'{build}/venv')
+venv = env.Command(venv_path, '', f'{python} -m venv {venv_path}')
+
+env['ENV']['VIRTUAL_ENV'] = venv_path.abspath
+env.PrependENVPath('PATH', f'{venv_path.abspath}/bin')
+
+env['zgtc'] += venv
+
+# change python's path to be within the virtual environment
+python = f'{venv_path.abspath}/bin/python'
+
+Export('python')
+Export('venv')
+
 
 VariantDir(f'{build}/{src}', src)
 Clean(build, build)

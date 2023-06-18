@@ -2,7 +2,7 @@
 #
 # Copyright (C) 2023  Jacob Koziej <jacobkoziej@gmail.com>
 
-Import('zgtc_src')
+Import('env')
 
 
-zgtc_src += Glob('*.c')
+env['zgtc'] += Glob('*.c')
