@@ -11,7 +11,6 @@
 \usepackage{graphicx}
 \usepackage{luapackageloader}
 \usepackage{ragged2e}
-\usepackage{verbatim}
 
 \usepackage{minted}
 \setminted{
@@ -35,6 +34,14 @@
 \setcounter{chapter}{-1}
 
 \directlua{zgtc = require('zgtc')}
+
+\NewDocumentCommand{\commandOutput}{m}{
+	\inputminted[
+		fontsize=\small,
+		linenos=false,
+		style=ansi-color,
+	]{ansi-color}{#1}
+}
 
 \NewDocumentCommand{\inputlicenselessminted}{mm}{
 	\inputminted[

@@ -8,27 +8,18 @@ import SCons
 
 
 def emitter(target, source, env):
-    base = str(target[0])
-
-    targets  = ['.stdout', '.stderr']
-    targets += [target + '.tex' for target in targets]
-
-    return [base + target for target in targets], source
+    return ['${SOURCE.base}.output'], source
 
 
 def generator(target, source, env, for_signature):
-    file = r'${SOURCE.filebase}'
+    FORMAT_BOLD = '\\033[1m'
+    FORMAT_NONE = '\\033[0m'
+
     commands = [ ]
 
-    def tex_gen(out):
-        return f'\
-            printf \'\\\\begin{{Verbatim}}\\n$ \' > {out}.tex &&\
-            cat {file}.sh {out} >> {out}.tex &&\
-            printf \'\\\\end{{Verbatim}}\\n\' >> {out}.tex'
-
-    commands += [f'$SHELL < $SOURCE.file > {file}.stdout 2> {file}.stderr || true']
-    commands += [tex_gen(f'{file}.stdout')]
-    commands += [tex_gen(f'{file}.stderr')]
+    commands += [f'printf \'%b$ %b\' \'{FORMAT_BOLD}\' \'{FORMAT_NONE}\' > $TARGET.file']
+    commands += [f'cat $SOURCE.file >> $TARGET.file']
+    commands += [f'script --flush --return --quiet --command \'$$(cat $SOURCE.file)\' >> $TARGET.file || true']
 
     return ['cd $SOURCE.dir && ' + command for command in commands]
 
