@@ -22,6 +22,8 @@ SConscript([
 
 
 zgtc = env.PDF('zoomer-guide-to-c.tex')
+env.SideEffect(Glob('_minted-zoomer-guide-to-c/*.pygstyle'), zgtc)
+env.SideEffect(Glob('_minted-zoomer-guide-to-c/*.pygtex'), zgtc)
 env.Depends(zgtc, env['zgtc'])
 
 Export('zgtc')
