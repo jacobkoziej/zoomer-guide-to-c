@@ -12,7 +12,7 @@ type the following into \texttt{hello-world.c}:
 
 \noindent
 Let's compile the program:
-\commandOutput{hello-world.d/hello-world.output}
+\commandOutput{hello-world.d/compile-hello-world.output}
 \noindent
 And let's run it:
 \commandOutput{hello-world.d/run-hello-world.output}
@@ -112,3 +112,34 @@ Let's go and recompile it to see what happens:
 \commandOutput{hello-world.d/compile-error.output}
 \noindent
 Well, that's a bummer.  What went wrong?
+
+\subsection{Compilation Errors}
+
+What we just ran into is what's called a \vocab{compilation error}.
+This kind of error occurs when we have a \vocab{syntax error} in our
+source code.  The compiler is programmed to follow a grammar that
+describes the C language, nothing more, nothing less.  That is not to
+say compiler writers haven't gone the extra mile to make our lives a
+little easier by adding descriptive error messages.
+
+Note how the compiler output is formatted.  Each error is prefaced by a
+file path, next by a line number, and finally, the position in the
+offending line.  Oh and look, the compiler writers were even nice enough
+to print a big arrow as to where they think we should add our missing
+semicolon.
+
+\
+
+\noindent
+Let's get that fixed and see if we're in the clear:
+\inputlicenselessminted{c}{hello-world.d/compile-warning.c}
+\noindent
+\commandOutput{hello-world.d/compile-warning.output}
+\noindent
+\commandOutput{hello-world.d/run-compile-warning.output}
+\noindent
+
+\
+
+\noindent
+So close and yet so far!

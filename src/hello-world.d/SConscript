@@ -6,13 +6,15 @@ Import('env')
 
 
 hello_world_sh = env.Substfile('hello-world.sh.in', SUBST_DICT={'@CC@' : '$CC'})
+
+compile_hello_world_sh = env.Substfile('compile-hello-world.sh.in', SUBST_DICT={'@CC@' : '$CC'})
 env.Depends(hello_world_sh, 'hello-world.c')
 
-hello_world_output = env.CommandOutput(hello_world_sh)
-env.SideEffect('a.out', hello_world_output)
+hello_world_output = env.CommandOutput([compile_hello_world_sh, hello_world_sh])
+env.SideEffect('hello-world', hello_world_output)
 
 
-run_hello_world_output = env.CommandOutput('run-hello-world.sh')
+run_hello_world_output = env.CommandOutput(['run-hello-world.sh', 'a.out.sh'])
 env.Depends(run_hello_world_output, hello_world_output)
 
 
@@ -22,9 +24,23 @@ env.Depends(compile_error_sh, 'compile-error-mock.c')
 compile_error_output = env.CommandOutput([compile_error_sh, hello_world_sh])
 
 
+compile_warning_sh = env.Substfile('compile-warning.sh.in', SUBST_DICT={'@CC@' : '$CC'})
+env.Depends(compile_warning_sh, 'compile-warning-mock.c')
+
+compile_warning_output = env.CommandOutput([compile_warning_sh, hello_world_sh])
+env.SideEffect('compile-warning', compile_warning_output)
+
+
+run_compile_warning_output = env.CommandOutput(['run-compile-warning.sh', 'a.out.sh'])
+env.Depends(run_compile_warning_output, compile_warning_sh)
+
+
 env['zgtc'] += Glob('*.c')
 env['zgtc'] += hello_world_sh
 env['zgtc'] += hello_world_output
 env['zgtc'] += run_hello_world_output
 env['zgtc'] += compile_error_sh
 env['zgtc'] += compile_error_output
+env['zgtc'] += compile_warning_sh
+env['zgtc'] += compile_warning_output
+env['zgtc'] += run_compile_warning_output

@@ -1,1 +1,1 @@
-./a.out
+./hello-world
