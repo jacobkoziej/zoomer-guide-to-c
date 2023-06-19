@@ -16,7 +16,15 @@ run_hello_world_output = env.CommandOutput('run-hello-world.sh')
 env.Depends(run_hello_world_output, hello_world_output)
 
 
+compile_error_sh = env.Substfile('compile-error.sh.in', SUBST_DICT={'@CC@' : '$CC'})
+env.Depends(compile_error_sh, 'compile-error-mock.c')
+
+compile_error_output = env.CommandOutput([compile_error_sh, hello_world_sh])
+
+
 env['zgtc'] += Glob('*.c')
 env['zgtc'] += hello_world_sh
 env['zgtc'] += hello_world_output
 env['zgtc'] += run_hello_world_output
+env['zgtc'] += compile_error_sh
+env['zgtc'] += compile_error_output

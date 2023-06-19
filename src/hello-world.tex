@@ -100,3 +100,15 @@ Unfortunately for us, we're dealing with a circular dependency, and very
 little is going to make sense until we get through at least a complete
 cycle.  Buckle up and get ready to be overwhelmed---we're about to go off
 the deep end!
+
+\section{Out the Frying Pan and into the Fire}
+
+To better understand what we're dealing with here, I think it makes
+sense for us to extend our Hello World program.  Reopen \texttt{%
+hello-world.c} and modify it to look like so:
+\inputlicenselessminted{c}{hello-world.d/compile-error.c}
+\noindent
+Let's go and recompile it to see what happens:
+\commandOutput{hello-world.d/compile-error.output}
+\noindent
+Well, that's a bummer.  What went wrong?
