@@ -35,6 +35,16 @@ run_compile_warning_output = env.CommandOutput(['run-compile-warning.sh', 'a.out
 env.Depends(run_compile_warning_output, compile_warning_sh)
 
 
+compile_warning_disable_sh = env.Substfile('compile-warning-disable.sh.in', SUBST_DICT={'@CC@' : '$CC'})
+env.Depends(compile_warning_disable_sh, 'compile-warning-mock.c')
+
+compile_warning_disable_mock_sh = env.Substfile('compile-warning-disable-mock.sh.in', SUBST_DICT={'@CC@' : '$CC'})
+env.Depends(compile_warning_disable_mock_sh, 'compile-warning-mock.c')
+
+compile_warning_disable_output = env.CommandOutput([compile_warning_disable_sh, compile_warning_disable_mock_sh])
+env.SideEffect('compile-warning-disable', compile_warning_output)
+
+
 env['zgtc'] += Glob('*.c')
 env['zgtc'] += hello_world_sh
 env['zgtc'] += hello_world_output
@@ -44,3 +54,6 @@ env['zgtc'] += compile_error_output
 env['zgtc'] += compile_warning_sh
 env['zgtc'] += compile_warning_output
 env['zgtc'] += run_compile_warning_output
+env['zgtc'] += compile_warning_disable_sh
+env['zgtc'] += compile_warning_disable_mock_sh
+env['zgtc'] += compile_warning_disable_output

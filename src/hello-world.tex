@@ -143,3 +143,39 @@ Let's get that fixed and see if we're in the clear:
 
 \noindent
 So close and yet so far!
+
+\subsection{Compilation Warnings}
+
+Even though our program compiled and ran, I wouldn't say this is the
+output we expected!  This time around, we've encountered a \vocab{%
+compilation warning}.  Unlike a compilation error, it isn't fatal to the
+compilation process.  This means that the compiler can begrudgingly
+translate our code into machine instructions that might not entirely
+make sense to execute!  Like a hot stove, just because we can touch it
+doesn't necessarily mean we should, at least not yet \texttt{;)}
+
+Generally speaking, you want to avoid having any compilation warnings.
+There are certain situations where the compiler \textbf{\emph{may}} be
+wrong, with a huge emphasis on the \emph{may}, as this is rarely the
+case.  \textbf{IF} you do come across a compilation warning in the field
+which you know can be safely ignored, you can disable said warning by
+supplying the compiler flag \texttt{-Wno-[warning-name]}.
+
+\
+
+\noindent
+Let's do that for our current code to see it in action:
+\commandOutput{hello-world.d/compile-warning-disable.output}
+\noindent
+Notice how there's no output, and yet there's a problem!  Use this
+knowledge sparingly and with great care; there's no knowing how many
+hours of your life this could cost you!
+
+\
+
+\noindent
+Pivoting from what \emph{not} to do, how about we start enabling all the
+warnings?  Counter-intuitively, \texttt{-Wall} does \underline{not}
+enable all warnings.  For that, you'll need to toggle the \texttt{%
+-Wextra} warnings, and because compiler writers can be insufferable
+bastards, you also need to also enable the \texttt{-Wpedantic} warnings.
