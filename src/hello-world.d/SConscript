@@ -45,6 +45,19 @@ compile_warning_disable_output = env.CommandOutput([compile_warning_disable_sh, 
 env.SideEffect('compile-warning-disable', compile_warning_output)
 
 
+compile_hello_world_epoch_sh = env.Substfile('compile-hello-world-epoch.sh.in', SUBST_DICT={'@CC@' : '$CC'})
+env.Depends(compile_hello_world_epoch_sh, 'hello-world-epoch-mock.c')
+
+compile_hello_world_epoch_mock_sh = env.Substfile('compile-hello-world-epoch-mock.sh.in', SUBST_DICT={'@CC@' : '$CC'})
+env.Depends(compile_hello_world_epoch_mock_sh, 'hello-world-epoch-mock.c')
+
+compile_hello_world_epoch_output = env.CommandOutput([compile_hello_world_epoch_sh, compile_hello_world_epoch_mock_sh])
+env.SideEffect('hello-world-epoch', compile_hello_world_epoch_output)
+
+run_hello_world_epoch_output = env.CommandOutput(['run-hello-world-epoch.sh', 'a.out.sh'])
+env.Depends(run_hello_world_epoch_output, compile_hello_world_epoch_output)
+
+
 env['zgtc'] += Glob('*.c')
 env['zgtc'] += hello_world_sh
 env['zgtc'] += hello_world_output
@@ -57,3 +70,7 @@ env['zgtc'] += run_compile_warning_output
 env['zgtc'] += compile_warning_disable_sh
 env['zgtc'] += compile_warning_disable_mock_sh
 env['zgtc'] += compile_warning_disable_output
+env['zgtc'] += compile_hello_world_epoch_sh
+env['zgtc'] += compile_hello_world_epoch_mock_sh
+env['zgtc'] += compile_hello_world_epoch_output
+env['zgtc'] += run_hello_world_epoch_output

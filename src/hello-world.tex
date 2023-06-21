@@ -179,3 +179,34 @@ warnings?  Counter-intuitively, \texttt{-Wall} does \underline{not}
 enable all warnings.  For that, you'll need to toggle the \texttt{%
 -Wextra} warnings, and because compiler writers can be insufferable
 bastards, you also need to also enable the \texttt{-Wpedantic} warnings.
+
+\subsubsection{Specifying a C Standard}
+
+Just when you thought things couldn't get any more annoying, we also
+need to specify a \vocab{C standard} we wish to abide by.  You'll find a
+lot of code floating around the internet which targets \texttt{c99}, and
+that comes down to two reasons: it added a lot of features we take for
+granted today, and since it has been around for so long, it's widely
+supported.  That said, the C standard is not set in stone and has
+changed since 1999.  As such, we'll be using \texttt{c17} for the rest
+of this book for no better reason besides being the most modern C
+standard at the time of writing.
+
+To add insult to injury, there are also \enquote{extensions} to the C
+standard.  By far, the most popular come from the GNU project.  Although
+they add a lot of nice functionality, they typically break code
+portability and tie you to \vocab{glibc}.  Due to their popularity,
+these versions of the C standard are usually referred to by
+\texttt{gnuXX}, where \texttt{XX} corresponds with the release year.
+
+Now for the important part: specifying a standard.  This step is
+critical as it gets the compiler on the same page as us.  To do this,
+add the \texttt{-std=[release]} flag.
+
+\
+
+\noindent
+With all that behind us, let's fix up our Hello World program:
+\inputlicenselessminted{c}{hello-world.d/hello-world-epoch.c}
+\commandOutput{hello-world.d/compile-hello-world-epoch.output}
+\commandOutput{hello-world.d/run-hello-world-epoch.output}
