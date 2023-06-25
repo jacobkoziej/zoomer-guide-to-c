@@ -206,3 +206,28 @@ With all that behind us, let's fix up our Hello World program:
 \inputlicenselessminted{c}{hello-world.d/hello-world-epoch.c}
 \commandOutput{hello-world.d/compile-hello-world-epoch.output}
 \commandOutput{hello-world.d/run-hello-world-epoch.output}
+
+\subsection{Runtime Errors}
+
+We've already seen an example of a \vocab{runtime error} when we used
+the wrong \vocab{format character} while using \mintinline{c}{printf()}
+to display \mintinline{c}{1970}.  What makes runtime errors particularly
+devious is that they can occur even if the compiler has not generated
+any warnings.
+
+\
+
+\noindent
+To showcase this behavior , let's print a \vocab{signed} integer as an
+\vocab{unsigned} integer:
+\inputlicenselessminted{c}{hello-world.d/unsigned-blunder.c}
+\commandOutput{hello-world.d/compile-unsigned-blunder.output}
+\commandOutput{hello-world.d/run-unsigned-blunder.output}
+\noindent
+Now for the difficult-to-accept part: there's no way to prevent runtime
+errors besides writing code that behaves correctly.  Sorry!  Of course,
+there are ways to mitigate the issue by running \vocab{static analysis
+tools}, enabling \vocab{compiler sanitizers}, writing \vocab{unit
+tests}, and employing \vocab{defensive programming} techniques.  We'll
+cover all of these throughout this book, but in the meantime, get ready
+for some headbanging fun as you try to debug errors in your code.

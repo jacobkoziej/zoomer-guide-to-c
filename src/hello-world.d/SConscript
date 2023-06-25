@@ -58,6 +58,19 @@ run_hello_world_epoch_output = env.CommandOutput(['run-hello-world-epoch.sh', 'a
 env.Depends(run_hello_world_epoch_output, compile_hello_world_epoch_output)
 
 
+compile_unsigned_blunder_sh = env.Substfile('compile-unsigned-blunder.sh.in', SUBST_DICT={'@CC@' : '$CC'})
+env.Depends(compile_unsigned_blunder_sh, 'unsigned-blunder.c')
+
+compile_unsigned_blunder_mock_sh = env.Substfile('compile-unsigned-blunder-mock.sh.in', SUBST_DICT={'@CC@' : '$CC'})
+env.Depends(compile_unsigned_blunder_mock_sh, 'unsigned-blunder.c')
+
+compile_unsigned_blunder_output = env.CommandOutput([compile_unsigned_blunder_sh, compile_unsigned_blunder_mock_sh])
+env.SideEffect('unsigned-blunder', compile_unsigned_blunder_output)
+
+run_unsigned_blunder_output = env.CommandOutput(['run-unsigned-blunder.sh', 'a.out.sh'])
+env.Depends(run_unsigned_blunder_output, compile_unsigned_blunder_output)
+
+
 env['zgtc'] += Glob('*.c')
 env['zgtc'] += hello_world_sh
 env['zgtc'] += hello_world_output
@@ -74,3 +87,7 @@ env['zgtc'] += compile_hello_world_epoch_sh
 env['zgtc'] += compile_hello_world_epoch_mock_sh
 env['zgtc'] += compile_hello_world_epoch_output
 env['zgtc'] += run_hello_world_epoch_output
+env['zgtc'] += compile_unsigned_blunder_sh
+env['zgtc'] += compile_unsigned_blunder_mock_sh
+env['zgtc'] += compile_unsigned_blunder_output
+env['zgtc'] += run_unsigned_blunder_output
