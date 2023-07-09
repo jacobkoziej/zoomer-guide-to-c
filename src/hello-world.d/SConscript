@@ -91,3 +91,8 @@ env['zgtc'] += compile_unsigned_blunder_sh
 env['zgtc'] += compile_unsigned_blunder_mock_sh
 env['zgtc'] += compile_unsigned_blunder_output
 env['zgtc'] += run_unsigned_blunder_output
+
+
+SConscript([
+    'exercises/SConscript',
+])
