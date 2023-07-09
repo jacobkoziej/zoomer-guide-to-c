@@ -8,6 +8,7 @@
 	paper=b5paper,
 }
 
+\usepackage{amssymb}
 \usepackage{csquotes}
 \usepackage{graphicx}
 \usepackage{luapackageloader}
@@ -34,6 +35,9 @@
 
 \setcounter{chapter}{-1}
 
+\newcounter{exercise}
+\counterwithin{exercise}{chapter}
+
 \directlua{zgtc = require('zgtc')}
 
 \NewDocumentCommand{\commandOutput}{m}{
@@ -56,6 +60,14 @@
 		firstline=#3,
 		lastline=#4,
 	]{#1}{#2}
+}
+
+\NewDocumentCommand{\exercise}{m}{%
+	\refstepcounter{exercise}%
+	\noindent\(\spadesuit\)~\textsl{\texttt{Exercise~\theexercise}}%
+	\newline%
+	\noindent\input{#1}%
+	\vspace{0.2em}\newline%
 }
 
 \NewDocumentCommand{\footurl}{m}{\footnote{\url{#1}}}
