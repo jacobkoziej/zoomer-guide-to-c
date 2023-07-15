@@ -95,4 +95,5 @@ env['zgtc'] += run_unsigned_blunder_output
 
 SConscript([
     'exercises/SConscript',
+    'solutions/SConscript',
 ])

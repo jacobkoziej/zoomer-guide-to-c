@@ -38,6 +38,9 @@
 \newcounter{exercise}
 \counterwithin{exercise}{chapter}
 
+\newcounter{solution}
+\counterwithin{solution}{section}
+
 \directlua{zgtc = require('zgtc')}
 
 \NewDocumentCommand{\commandOutput}{m}{
@@ -63,16 +66,26 @@
 }
 
 \NewDocumentCommand{\exercise}{m}{%
-	\refstepcounter{exercise}%
-	\noindent\(\spadesuit\)~\textsl{\texttt{Exercise~\theexercise}}%
-	\newline%
-	\noindent\input{#1}%
-	\vspace{0.2em}\newline%
+	\refstepcounter{solution}%
+	\par\noindent%
+	\(\spadesuit\)~\textsl{\texttt{Exercise~\theexercise}}%
+	\par\noindent\unskip\ignorespaces%
+	{\input{#1}}%
+	\par\ignorespacesafterend\vspace{0.2em}%
 }
 
 \NewDocumentCommand{\footurl}{m}{\footnote{\url{#1}}}
 
 \NewDocumentCommand{\key}{m}{\texttt{#1}}
+
+\NewDocumentCommand{\solution}{m}{%
+	\refstepcounter{solution}%
+	\par\noindent%
+	\(\nabla\)~\textsl{\texttt{Solution~\thesolution}}%
+	\par\noindent\unskip\ignorespaces%
+	{\input{#1}}%
+	\par\ignorespacesafterend\vspace{0.2em}%
+}
 
 \NewDocumentCommand{\vocab}{m}{\textbf{\textsl{#1}}}
 
