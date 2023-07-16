@@ -15,14 +15,13 @@ env['zgtc'] += Glob('lua/*.lua')
 
 python_zgtc = Dir('python')
 
-python_zgtc_src = [ ]
-
+python_zgtc_src  = [venv]
 python_zgtc_src += [File('python/pyproject.toml')]
 python_zgtc_src += Glob('python/zgtc/*.py')
 
-requirements_zgtc = f'{venv[0].abspath}/.requirements_zgtc'
+python_zgtc_target = File('.requirements-zgtc')
 
 env['zgtc'] += env.Command(
-    requirements_zgtc,
+    python_zgtc_target,
     python_zgtc_src,
-    f'{python} -m pip install --editable {python_zgtc.path} && touch {requirements_zgtc}')
+    f'{python} -m pip install --editable {python_zgtc.path} && touch {python_zgtc_target.path}')

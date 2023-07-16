@@ -74,10 +74,11 @@ Export('python')
 Export('venv')
 
 
+VariantDir(f'{build}/{lib}', lib)
 VariantDir(f'{build}/{src}', src)
 Clean(build, build)
 
 SConscript([
-    f'{lib}/SConscript',
+    f'{build}/{lib}/SConscript',
     f'{build}/{src}/SConscript',
 ])
