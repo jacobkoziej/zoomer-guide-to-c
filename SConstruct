@@ -22,7 +22,7 @@ lib   = 'lib/zgtc'
 src   = 'src'
 
 
-env = Environment(tools=['default', 'CommandOutput'])
+env = Environment(tools=['default', 'CommandOutput', 'CommandSubst'])
 
 if path := os.environ.get('PATH'):
     env['ENV']['PATH'] = path
@@ -31,6 +31,7 @@ if term := os.environ.get('TERM'):
     env['ENV']['TERM'] = term
 
 env.Replace(CC='clang')
+env['COMMANDSUBST_DICT']['@CC@'] = '$CC'
 
 env.Replace(PDFLATEX='lualatex')
 env.AppendUnique(PDFLATEXFLAGS=[

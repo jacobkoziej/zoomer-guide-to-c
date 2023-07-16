@@ -5,9 +5,9 @@
 Import('env')
 
 
-hello_world_sh = env.Substfile('hello-world.sh.in', SUBST_DICT={'@CC@' : '$CC'})
+hello_world_sh = env.CommandSubst('hello-world.sh.in')
 
-compile_hello_world_sh = env.Substfile('compile-hello-world.sh.in', SUBST_DICT={'@CC@' : '$CC'})
+compile_hello_world_sh = env.CommandSubst('compile-hello-world.sh.in')
 env.Depends(hello_world_sh, 'hello-world.c')
 
 hello_world_output = env.CommandOutput([compile_hello_world_sh, hello_world_sh])
@@ -18,13 +18,13 @@ run_hello_world_output = env.CommandOutput(['run-hello-world.sh', 'a.out.sh'])
 env.Depends(run_hello_world_output, hello_world_output)
 
 
-compile_error_sh = env.Substfile('compile-error.sh.in', SUBST_DICT={'@CC@' : '$CC'})
+compile_error_sh = env.CommandSubst('compile-error.sh.in')
 env.Depends(compile_error_sh, 'compile-error-mock.c')
 
 compile_error_output = env.CommandOutput([compile_error_sh, hello_world_sh])
 
 
-compile_warning_sh = env.Substfile('compile-warning.sh.in', SUBST_DICT={'@CC@' : '$CC'})
+compile_warning_sh = env.CommandSubst('compile-warning.sh.in')
 env.Depends(compile_warning_sh, 'compile-warning-mock.c')
 
 compile_warning_output = env.CommandOutput([compile_warning_sh, hello_world_sh])
@@ -35,20 +35,20 @@ run_compile_warning_output = env.CommandOutput(['run-compile-warning.sh', 'a.out
 env.Depends(run_compile_warning_output, compile_warning_sh)
 
 
-compile_warning_disable_sh = env.Substfile('compile-warning-disable.sh.in', SUBST_DICT={'@CC@' : '$CC'})
+compile_warning_disable_sh = env.CommandSubst('compile-warning-disable.sh.in')
 env.Depends(compile_warning_disable_sh, 'compile-warning-mock.c')
 
-compile_warning_disable_mock_sh = env.Substfile('compile-warning-disable-mock.sh.in', SUBST_DICT={'@CC@' : '$CC'})
+compile_warning_disable_mock_sh = env.CommandSubst('compile-warning-disable-mock.sh.in')
 env.Depends(compile_warning_disable_mock_sh, 'compile-warning-mock.c')
 
 compile_warning_disable_output = env.CommandOutput([compile_warning_disable_sh, compile_warning_disable_mock_sh])
 env.SideEffect('compile-warning-disable', compile_warning_output)
 
 
-compile_hello_world_epoch_sh = env.Substfile('compile-hello-world-epoch.sh.in', SUBST_DICT={'@CC@' : '$CC'})
+compile_hello_world_epoch_sh = env.CommandSubst('compile-hello-world-epoch.sh.in')
 env.Depends(compile_hello_world_epoch_sh, 'hello-world-epoch-mock.c')
 
-compile_hello_world_epoch_mock_sh = env.Substfile('compile-hello-world-epoch-mock.sh.in', SUBST_DICT={'@CC@' : '$CC'})
+compile_hello_world_epoch_mock_sh = env.CommandSubst('compile-hello-world-epoch-mock.sh.in')
 env.Depends(compile_hello_world_epoch_mock_sh, 'hello-world-epoch-mock.c')
 
 compile_hello_world_epoch_output = env.CommandOutput([compile_hello_world_epoch_sh, compile_hello_world_epoch_mock_sh])
@@ -58,10 +58,10 @@ run_hello_world_epoch_output = env.CommandOutput(['run-hello-world-epoch.sh', 'a
 env.Depends(run_hello_world_epoch_output, compile_hello_world_epoch_output)
 
 
-compile_unsigned_blunder_sh = env.Substfile('compile-unsigned-blunder.sh.in', SUBST_DICT={'@CC@' : '$CC'})
+compile_unsigned_blunder_sh = env.CommandSubst('compile-unsigned-blunder.sh.in')
 env.Depends(compile_unsigned_blunder_sh, 'unsigned-blunder.c')
 
-compile_unsigned_blunder_mock_sh = env.Substfile('compile-unsigned-blunder-mock.sh.in', SUBST_DICT={'@CC@' : '$CC'})
+compile_unsigned_blunder_mock_sh = env.CommandSubst('compile-unsigned-blunder-mock.sh.in')
 env.Depends(compile_unsigned_blunder_mock_sh, 'unsigned-blunder.c')
 
 compile_unsigned_blunder_output = env.CommandOutput([compile_unsigned_blunder_sh, compile_unsigned_blunder_mock_sh])
