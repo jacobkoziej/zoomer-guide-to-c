@@ -1,0 +1,1 @@
+@CC@ -std=c17 -Wall -Wextra -Wpedantic -o hello-world-epoch hello-world-epoch-mock.c

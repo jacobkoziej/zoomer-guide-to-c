@@ -1,0 +1,27 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Copyright (C) 2023  Jacob Koziej <jacobkoziej@gmail.com>
+
+Import('env')
+Import('python')
+Import('venv')
+
+
+env.PrependENVPath('LUA_PATH', Dir('lua').abspath + '/?', sep=';')
+env.PrependENVPath('LUA_PATH', Dir('lua').abspath + '/?.lua', sep=';')
+
+env['zgtc'] += Glob('lua/*.lua')
+
+
+python_zgtc = Dir('python')
+
+python_zgtc_src  = [venv]
+python_zgtc_src += [File('python/pyproject.toml')]
+python_zgtc_src += Glob('python/zgtc/*.py')
+
+python_zgtc_target = File('.requirements-zgtc')
+
+env['zgtc'] += env.Command(
+    python_zgtc_target,
+    python_zgtc_src,
+    f'{python} -m pip install --editable {python_zgtc.path} && touch {python_zgtc_target.path}')

@@ -1,0 +1,8 @@
+% SPDX-License-Identifier: CC-BY-NC-SA-4.0
+%
+% Copyright (C) 2022  Jacob Koziej <jacobkoziej@gmail.com>
+Removing \mintinline{c}{#include <stdio.h>} from the top of our program
+should have caused the compiler to complain that we have an implicit
+function declaration.  By adding
+\mintinline{c}{int printf(const char*, ...);}, we're explicitly providing
+the function declaration found in \mintinline{c}{#include <stdio.h>}.

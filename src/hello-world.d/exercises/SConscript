@@ -5,4 +5,4 @@
 Import('env')
 
 
-env['zgtc'] += Glob('*.c')
+env['zgtc'] += Glob('*.tex')

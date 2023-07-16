@@ -1,0 +1,1 @@
+@CC@ -Wno-format hello-world.c

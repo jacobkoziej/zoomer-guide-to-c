@@ -6,29 +6,24 @@ Import('env')
 Import('version')
 
 
-env.AppendENVPath('LUA_PATH', Dir('.').abspath + '/?', sep=';')
-env.AppendENVPath('LUA_PATH', Dir('.').abspath + '/?.lua', sep=';')
-
-
-zgtc_src = [ ]
-
-Export('zgtc_src')
-
-
 version_tex = env.Substfile(
     'version.tex.in',
     SUBST_DICT={'@VERSION@' : version})
 
 
-zgtc_src += Glob('*.tex')
-zgtc_src += version_tex
-zgtc_src += ['zgtc.lua']
+env['zgtc'] += Glob('*.tex')
+env['zgtc'] += version_tex
 
 
 SConscript([
+    'hello-world.d/SConscript',
     'preface.d/SConscript',
 ])
 
 
 zgtc = env.PDF('zoomer-guide-to-c.tex')
-env.Depends(zgtc, zgtc_src)
+env.SideEffect(Glob('_minted-zoomer-guide-to-c/*.pygstyle'), zgtc)
+env.SideEffect(Glob('_minted-zoomer-guide-to-c/*.pygtex'), zgtc)
+env.Depends(zgtc, env['zgtc'])
+
+Export('zgtc')

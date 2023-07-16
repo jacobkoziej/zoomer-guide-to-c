@@ -8,6 +8,8 @@
 	paper=b5paper,
 }
 
+\usepackage{amssymb}
+\usepackage{csquotes}
 \usepackage{graphicx}
 \usepackage{luapackageloader}
 \usepackage{ragged2e}
@@ -15,7 +17,6 @@
 \usepackage{minted}
 \setminted{
 	breaklines,
-	fontsize=\small,
 	linenos,
 	obeytabs,
 }
@@ -34,17 +35,59 @@
 
 \setcounter{chapter}{-1}
 
+\newcounter{exercise}
+\counterwithin{exercise}{chapter}
+
+\newcounter{solution}
+\counterwithin{solution}{section}
+
 \directlua{zgtc = require('zgtc')}
+
+\NewDocumentCommand{\commandOutput}{m}{
+	\inputminted[
+		fontsize=\small,
+		linenos=false,
+		style=ansi-color,
+	]{ansi-color}{#1}
+}
 
 \NewDocumentCommand{\inputlicenselessminted}{mm}{
 	\inputminted[
+		fontsize=\small,
 		lastline=\directlua{tex.print(zgtc.lines('#2'))},
 	]{#1}{#2}
+}
+
+\NewDocumentCommand{\inputlinesminted}{mmmm}{
+	\inputminted[
+		firstline=#3,
+		lastline=#4,
+	]{#1}{#2}
+}
+
+\NewDocumentCommand{\exercise}{m}{%
+	\refstepcounter{exercise}%
+	\par\noindent%
+	\(\spadesuit\)~\textsl{\texttt{Exercise~\theexercise}}%
+	\par\noindent\unskip\ignorespaces%
+	{\input{#1}}%
+	\par\ignorespacesafterend\vspace{0.2em}%
 }
 
 \NewDocumentCommand{\footurl}{m}{\footnote{\url{#1}}}
 
 \NewDocumentCommand{\key}{m}{\texttt{#1}}
+
+\NewDocumentCommand{\solution}{m}{%
+	\refstepcounter{solution}%
+	\par\noindent%
+	\(\nabla\)~\textsl{\texttt{Solution~\thesolution}}%
+	\par\noindent\unskip\ignorespaces%
+	{\input{#1}}%
+	\par\ignorespacesafterend\vspace{0.2em}%
+}
+
+\NewDocumentCommand{\vocab}{m}{\textbf{\textsl{#1}}}
 
 \makeatletter
 \RenewDocumentCommand{\cleardoublepage}{}{

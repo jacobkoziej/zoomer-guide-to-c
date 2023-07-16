@@ -17,19 +17,30 @@ Export('license')
 Export('version')
 
 
-env = Environment()
+build = 'build'
+lib   = 'lib/zgtc'
+src   = 'src'
+
+
+env = Environment(tools=['default', 'CommandOutput', 'CommandSubst'])
+
+if path := os.environ.get('PATH'):
+    env['ENV']['PATH'] = path
 
 if term := os.environ.get('TERM'):
     env['ENV']['TERM'] = term
 
+env.Replace(CC='clang')
+env['COMMANDSUBST_DICT']['@CC@'] = '$CC'
+
 env.Replace(PDFLATEX='lualatex')
 env.AppendUnique(PDFLATEXFLAGS=[
     '--halt-on-error',
-    '--interaction=nonstopmode',
     '--shell-escape',
 ])
 
-git = env.WhereIs('git')
+git    = env.WhereIs('git')
+python = env.WhereIs('python')
 
 Export('env')
 Export('git')
@@ -44,12 +55,30 @@ if git:
     Export('version')
 
 
-build = 'build'
-src   = 'src'
+env['zgtc'] = [ ]
 
-VariantDir(build + '/' + src, src)
+
+# virtual environment
+venv_path = env.Dir(f'{build}/venv')
+venv = env.Command(venv_path, '', f'{python} -m venv {venv_path}')
+
+env['ENV']['VIRTUAL_ENV'] = venv_path.abspath
+env.PrependENVPath('PATH', f'{venv_path.abspath}/bin')
+
+env['zgtc'] += venv
+
+# change python's path to be within the virtual environment
+python = f'{venv_path.abspath}/bin/python'
+
+Export('python')
+Export('venv')
+
+
+VariantDir(f'{build}/{lib}', lib)
+VariantDir(f'{build}/{src}', src)
 Clean(build, build)
 
 SConscript([
-    f'{build}/src/SConscript',
+    f'{build}/{lib}/SConscript',
+    f'{build}/{src}/SConscript',
 ])

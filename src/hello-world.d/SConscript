@@ -1,0 +1,95 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Copyright (C) 2023  Jacob Koziej <jacobkoziej@gmail.com>
+
+Import('env')
+
+
+compile_hello_world_mock_sh = env.CommandSubst('compile-hello-world-mock.sh.in')
+compile_hello_world_sh = env.CommandSubst('compile-hello-world.sh.in')
+
+compile_hello_world_output = env.CommandOutput([compile_hello_world_sh, compile_hello_world_mock_sh])
+env.Depends(compile_hello_world_output, 'hello-world.c')
+env.SideEffect('hello-world', compile_hello_world_output)
+
+run_hello_world_output = env.CommandOutput(['run-hello-world.sh', 'a.out.sh'])
+env.Depends(run_hello_world_output, compile_hello_world_output)
+
+
+compile_error_sh = env.CommandSubst('compile-error.sh.in')
+
+compile_error_output = env.CommandOutput([compile_error_sh, compile_hello_world_sh])
+env.Depends(compile_error_output, 'compile-error-mock.c')
+env.Depends(compile_error_output, 'compile-error.c')
+
+
+compile_warning_sh = env.CommandSubst('compile-warning.sh.in')
+
+compile_warning_output = env.CommandOutput([compile_warning_sh, compile_hello_world_sh])
+env.Depends(compile_warning_output, 'compile-warning-mock.c')
+env.Depends(compile_warning_output, 'compile-warning.c')
+env.SideEffect('compile-warning', compile_warning_output)
+
+run_compile_warning_output = env.CommandOutput(['run-compile-warning.sh', 'a.out.sh'])
+env.Depends(run_compile_warning_output, compile_warning_output)
+
+
+compile_warning_disable_sh = env.CommandSubst('compile-warning-disable.sh.in')
+compile_warning_disable_mock_sh = env.CommandSubst('compile-warning-disable-mock.sh.in')
+
+compile_warning_disable_output = env.CommandOutput([compile_warning_disable_sh, compile_warning_disable_mock_sh])
+env.Depends(compile_warning_disable_output, 'compile-warning-mock.c')
+env.Depends(compile_warning_disable_output, 'compile-warning.c')
+env.SideEffect('compile-warning-disable', compile_warning_output)
+
+
+compile_hello_world_epoch_sh = env.CommandSubst('compile-hello-world-epoch.sh.in')
+compile_hello_world_epoch_mock_sh = env.CommandSubst('compile-hello-world-epoch-mock.sh.in')
+
+compile_hello_world_epoch_output = env.CommandOutput([compile_hello_world_epoch_sh, compile_hello_world_epoch_mock_sh])
+env.Depends(compile_hello_world_epoch_output, 'hello-world-epoch-mock.c')
+env.Depends(compile_hello_world_epoch_output, 'hello-world-epoch.c')
+env.SideEffect('hello-world-epoch', compile_hello_world_epoch_output)
+
+run_hello_world_epoch_output = env.CommandOutput(['run-hello-world-epoch.sh', 'a.out.sh'])
+env.Depends(run_hello_world_epoch_output, compile_hello_world_epoch_output)
+
+
+compile_unsigned_blunder_sh = env.CommandSubst('compile-unsigned-blunder.sh.in')
+compile_unsigned_blunder_mock_sh = env.CommandSubst('compile-unsigned-blunder-mock.sh.in')
+
+compile_unsigned_blunder_output = env.CommandOutput([compile_unsigned_blunder_sh, compile_unsigned_blunder_mock_sh])
+env.Depends(compile_unsigned_blunder_output, 'unsigned-blunder.c')
+env.SideEffect('unsigned-blunder', compile_unsigned_blunder_output)
+
+run_unsigned_blunder_output = env.CommandOutput(['run-unsigned-blunder.sh', 'a.out.sh'])
+env.Depends(run_unsigned_blunder_output, compile_unsigned_blunder_output)
+
+
+env['zgtc'] += Glob('*.c')
+env['zgtc'] += compile_hello_world_mock_sh
+env['zgtc'] += compile_hello_world_sh
+env['zgtc'] += compile_hello_world_output
+env['zgtc'] += run_hello_world_output
+env['zgtc'] += compile_error_sh
+env['zgtc'] += compile_error_output
+env['zgtc'] += compile_warning_sh
+env['zgtc'] += compile_warning_output
+env['zgtc'] += run_compile_warning_output
+env['zgtc'] += compile_warning_disable_sh
+env['zgtc'] += compile_warning_disable_mock_sh
+env['zgtc'] += compile_warning_disable_output
+env['zgtc'] += compile_hello_world_epoch_sh
+env['zgtc'] += compile_hello_world_epoch_mock_sh
+env['zgtc'] += compile_hello_world_epoch_output
+env['zgtc'] += run_hello_world_epoch_output
+env['zgtc'] += compile_unsigned_blunder_sh
+env['zgtc'] += compile_unsigned_blunder_mock_sh
+env['zgtc'] += compile_unsigned_blunder_output
+env['zgtc'] += run_unsigned_blunder_output
+
+
+SConscript([
+    'exercises/SConscript',
+    'solutions/SConscript',
+])

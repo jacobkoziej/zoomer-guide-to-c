@@ -1,0 +1,1 @@
+@CC@ -o compile-warning compile-warning-mock.c
