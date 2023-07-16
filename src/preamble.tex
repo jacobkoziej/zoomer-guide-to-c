@@ -40,6 +40,7 @@
 
 \newcounter{solution}
 \counterwithin{solution}{section}
+\RenewDocumentCommand{\thesolution}{}{\arabic{section}.\arabic{solution}}
 
 \directlua{zgtc = require('zgtc')}
 
