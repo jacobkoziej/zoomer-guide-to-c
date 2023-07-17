@@ -83,7 +83,6 @@ Export('venv')
 
 VariantDir(f'{build}/{lib}', lib)
 VariantDir(f'{build}/{src}', src)
-Clean(build, build)
 
 SConscript([
     f'{build}/{lib}/SConscript',
