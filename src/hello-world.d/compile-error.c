@@ -3,7 +3,7 @@
 
 int main(void)
 {
-	int epoch = 1970
+	const int epoch = 1970
 
 	printf("Hello %f's World!\n", epoch);
 
