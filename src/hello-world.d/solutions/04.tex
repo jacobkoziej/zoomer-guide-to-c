@@ -1,0 +1,7 @@
+% SPDX-License-Identifier: CC-BY-NC-SA-4.0
+%
+% Copyright (C) 2022  Jacob Koziej <jacobkoziej@gmail.com>
+We've introduced recursion into \mintinline{c}{main()} without a base
+case, causing a stack overflow.  Depending on where we place our call to
+\mintinline{c}{main()}, our program might never call
+\mintinline{c}{printf()}.

@@ -1,0 +1,240 @@
+% SPDX-License-Identifier: CC-BY-NC-SA-4.0
+%
+% hello-world.tex -- the timeless classic
+% Copyright (C) 2022  Jacob Koziej <jacobkoziej@gmail.com>
+
+\chapter{Hello World!}
+
+Let's write a timeless classic in C.  Fire up your editor of choice and
+type the following into \texttt{hello-world.c}:
+
+\inputlicenselessminted{c}{hello-world.d/hello-world.c}
+
+\noindent
+Let's compile the program:
+\commandOutput{hello-world.d/compile-hello-world.output}
+\noindent
+And let's run it:
+\commandOutput{hello-world.d/run-hello-world.output}
+\noindent
+Awesome!  We just wrote our first C program!  That’s great, but what the
+hell does any of this mean?
+
+\section{What the Hell Does Any of This Mean?}
+
+There's no point in beating around the bush; the only way we're going to
+understand any of this is by breaking it down, line by line!
+
+\inputlinesminted{c}{hello-world.d/hello-world.c}{1}{1}
+
+\noindent
+Our first line concerns us with a \vocab{C preprocessor directive}.
+These directives are picked up by the \vocab{preprocessor} and modify
+the contents of our source code before handing it off to the compiler.
+In our case, we're asking for the preprocessor to include the contents
+of the \mintinline{c}{stdio.h} \vocab{header} in our source code.  We'll
+cover where the preprocessor finds these files in a later section when
+we cover the compilation process, but for now, all you need to know is
+that by including a file, we gain access to library functions.
+
+\inputlinesminted{c}{hello-world.d/hello-world.c}{4}{4}
+
+\noindent
+Here we have the beginning of a \vocab{function definition}.  Simmilar
+to how we may define a word with a sequence of other words, we can
+define a function as a sequence of operations and other functions.
+Unlike the definition of words, the compiler needs some help
+understanding where our new function fits into the world; this comes in
+the form of an optional \vocab{return type} and an optional list of
+\vocab{parameters}. In our case, we intend to return an \mintinline%
+{c}{int} and denote no parameters with \mintinline{c}{void}.  What's
+also important to note here is that \mintinline{c}{main()} is a special
+function as it serves as our program's \vocab{entry point}.
+
+\inputlinesminted{c}{hello-world.d/hello-world.c}{5}{5}
+
+\noindent
+Although we've told the compiler our intentions for a function
+definition, we must now somehow delineate the start of the
+\vocab{function body}.  In C, we do this with a left curly brace.
+
+\inputlinesminted{c}{hello-world.d/hello-world.c}{6}{6}
+
+\noindent
+Here is our first \vocab{function call}.  In C, we call functions by
+writing their \vocab{identifier} and appending a set of parenthesis with
+the required \vocab{arguments}.  Although not shown here, we can also
+store the returned value of non-\mintinline{c}{void} function calls.
+
+For our call to \mintinline{c}{printf()}, we've provided the \vocab{%
+string literal} argument, \mintinline{c}{"Hello World!\n"}.  What's
+important to notice here is the \mintinline{c}{'\n'} at the end of the
+string.  We call this an \vocab{escape sequence}, as it allows us to
+easily type special characters such as newline.
+
+\inputlinesminted{c}{hello-world.d/hello-world.c}{8}{8}
+
+\noindent
+Before we finish our function, we must specify a return value.  What's
+special about \mintinline{c}{main()} is that the value we return here is
+interpreted as our program's \vocab{exit code} by the operating system.
+By convention, a value of zero is considered a sucessful execution of a
+program.  Conversely, any non-zero exit code is an error.  Often times,
+programs return different non-zero values here to signify different
+types of unrecoverable errors.
+
+\inputlinesminted{c}{hello-world.d/hello-world.c}{9}{9}
+
+\noindent
+Now that we're all done, we need to close the body of our function with
+a right curly brace.
+
+\subsection{Safe at Last!?}
+
+I don't know about you, but I don't think that was half bad. \emph{%
+Sure}, I may have thrown a lot of new terms at you, and you may have
+more questions than when we started, but look at the bright side: you're
+soon going to forget that you don't understand.
+
+Unfortunately for us, we're dealing with a circular dependency, and very
+little is going to make sense until we get through at least a complete
+cycle.  Buckle up and get ready to be overwhelmed---we're about to go off
+the deep end!
+
+\section{Out the Frying Pan and into the Fire}
+
+To better understand what we're dealing with here, I think it makes
+sense for us to extend our Hello World program.  Reopen \texttt{%
+hello-world.c} and modify it to look like so:
+\inputlicenselessminted{c}{hello-world.d/compile-error.c}
+\noindent
+Let's go and recompile it to see what happens:
+\commandOutput{hello-world.d/compile-error.output}
+\noindent
+Well, that's a bummer.  What went wrong?
+
+\subsection{Compilation Errors}
+
+What we just ran into is what's called a \vocab{compilation error}.
+This kind of error occurs when we have a \vocab{syntax error} in our
+source code.  The compiler is programmed to follow a grammar that
+describes the C language, nothing more, nothing less.  That is not to
+say compiler writers haven't gone the extra mile to make our lives a
+little easier by adding descriptive error messages.
+
+Note how the compiler output is formatted.  Each error is prefaced by a
+file path, next by a line number, and finally, the position in the
+offending line.  Oh and look, the compiler writers were even nice enough
+to print a big arrow as to where they think we should add our missing
+semicolon.
+
+\
+
+\noindent
+Let's get that fixed and see if we're in the clear:
+\inputlicenselessminted{c}{hello-world.d/compile-warning.c}
+\noindent
+\commandOutput{hello-world.d/compile-warning.output}
+\noindent
+\commandOutput{hello-world.d/run-compile-warning.output}
+\noindent
+So close and yet so far!
+
+\subsection{Compilation Warnings}
+
+Even though our program compiled and ran, I wouldn't say this is the
+output we expected!  This time around, we've encountered a \vocab{%
+compilation warning}.  Unlike a compilation error, it isn't fatal to the
+compilation process.  This means that the compiler can begrudgingly
+translate our code into machine instructions that might not entirely
+make sense to execute!  Like a hot stove, just because we can touch it
+doesn't necessarily mean we should, at least not yet \texttt{;)}
+
+Generally speaking, you want to avoid having any compilation warnings.
+There are certain situations where the compiler \textbf{\emph{may}} be
+wrong, with a huge emphasis on the \emph{may}, as this is rarely the
+case.  \textbf{IF} you do come across a compilation warning in the field
+which you know can be safely ignored, you can disable said warning by
+supplying the compiler flag \texttt{-Wno-[warning-name]}.
+
+\
+
+\noindent
+Let's do that for our current code to see it in action:
+\commandOutput{hello-world.d/compile-warning-disable.output}
+\noindent
+Notice how there's no output, and yet there's a problem!  Use this
+knowledge sparingly and with great care; there's no knowing how many
+hours of your life this could cost you!
+
+\
+
+\noindent
+Pivoting from what \emph{not} to do, how about we start enabling all the
+warnings?  Counter-intuitively, \texttt{-Wall} does \underline{not}
+enable all warnings.  For that, you'll need to toggle the \texttt{%
+-Wextra} warnings, and because compiler writers can be insufferable
+bastards, you also need to also enable the \texttt{-Wpedantic} warnings.
+
+\subsubsection{Specifying a C Standard}
+
+Just when you thought things couldn't get any more annoying, we also
+need to specify a \vocab{C standard} we wish to abide by.  You'll find a
+lot of code floating around the internet which targets \texttt{c99}, and
+that comes down to two reasons: it added a lot of features we take for
+granted today, and since it has been around for so long, it's widely
+supported.  That said, the C standard is not set in stone and has
+changed since 1999.  As such, we'll be using \texttt{c17} for the rest
+of this book for no better reason besides being the most modern C
+standard at the time of writing.
+
+To add insult to injury, there are also \enquote{extensions} to the C
+standard.  By far, the most popular come from the GNU project.  Although
+they add a lot of nice functionality, they typically break code
+portability and tie you to \vocab{glibc}.  Due to their popularity,
+these versions of the C standard are usually referred to by
+\texttt{gnuXX}, where \texttt{XX} corresponds with the release year.
+
+Now for the important part: specifying a standard.  This step is
+critical as it gets the compiler on the same page as us.  To do this,
+add the \texttt{-std=[release]} flag.
+
+\
+
+\noindent
+With all that behind us, let's fix up our Hello World program:
+\inputlicenselessminted{c}{hello-world.d/hello-world-epoch.c}
+\commandOutput{hello-world.d/compile-hello-world-epoch.output}
+\commandOutput{hello-world.d/run-hello-world-epoch.output}
+
+\subsection{Runtime Errors}
+
+We've already seen an example of a \vocab{runtime error} when we used
+the wrong \vocab{format character} while using \mintinline{c}{printf()}
+to display \mintinline{c}{1970}.  What makes runtime errors particularly
+devious is that they can occur even if the compiler has not generated
+any warnings.
+
+\
+
+\noindent
+To showcase this behavior, let's print a \vocab{signed} integer as an
+\vocab{unsigned} integer:
+\inputlicenselessminted{c}{hello-world.d/unsigned-blunder.c}
+\commandOutput{hello-world.d/compile-unsigned-blunder.output}
+\commandOutput{hello-world.d/run-unsigned-blunder.output}
+\noindent
+Now for the difficult-to-accept part: there's no way to prevent runtime
+errors besides writing code that behaves correctly.  Sorry!  Of course,
+there are ways to mitigate the issue by running \vocab{static analysis
+tools}, enabling \vocab{compiler sanitizers}, writing \vocab{unit
+tests}, and employing \vocab{defensive programming} techniques.  We'll
+cover all of these throughout this book, but in the meantime, get ready
+for some headbanging fun as you try to debug errors in your code.
+
+\section{Exercises}
+
+\exercise{hello-world.d/exercises/01.tex}
+\exercise{hello-world.d/exercises/02.tex}
+\exercise{hello-world.d/exercises/03.tex}
+\exercise{hello-world.d/exercises/04.tex}

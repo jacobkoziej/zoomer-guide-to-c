@@ -1,0 +1,1 @@
+@CC@ -Wall -Wextra -Wpedantic unsigned-blunder.c

@@ -1,0 +1,47 @@
+% SPDX-License-Identifier: CC-BY-NC-SA-4.0
+%
+% preface.tex -- subject, scope, and aims
+% Copyright (C) 2022  Jacob Koziej <jacobkoziej@gmail.com>
+
+\chapter{Preface}
+
+\inputlicenselessminted{c}{preface.d/Q_rsqrt.c}
+
+\noindent
+Fascinating, right?  What we're looking at here is Quake III's fast
+inverse square root\footurl{https://github.com/id-Software/%
+Quake-III-Arena/blob/master/code/game/q_math.c\#L552}, and it's
+absolutely \emph{genius}.  When I think of C programming, this is the
+first thing that comes to mind: pure cleverness and a deep understanding
+of hardware features.  Of course, we still have a long way ahead of us
+before you can truly appreciate the beauty of this code, but that's
+alright.  After all, isn't that why you're here?
+
+If it wasn't clear enough yet, C is rather \emph{bizarre}.  Not only
+does it let you do almost anything, but there's little to nothing
+stopping you from shooting yourself in the foot.  Even the code I showed
+just now contains undefined behavior!
+
+That said, learning C in \directlua{tex.print(tex.year)} is still a
+worthwhile investment.  Admittedly, I am biased as I adore C in all its
+ugliness, but the truth of the matter still stands: learning C will
+\emph{force} you to become a better programmer.  There's just something
+about writing complex software with the programming equivalent of stone
+tools that necessitates a good grasp of code writing.
+
+Although there are a lot of great free resources out there the learn C,
+I feel like they all fall short in some way.  There is either little to
+no guidance for future topics, too little or too many assumptions about
+background knowledge, or little to no exercises to reinforce freshly
+covered content.  You can absolutely learn C by browsing these
+resources, as I can attest to that, but I feel that it requires a
+significant amount of patience and a bit of luck to ensure you find your
+way down the right path.  Not to mention the extra effort of finding
+effective ways of reinforcing what you had just learned.
+
+I won't be making too many assumptions about your background knowledge,
+but a background in some programming principles will help; even
+something as simple as Berkeley's Snap!\footurl{https://%
+snap.berkeley.edu/} or MIT's Scratch\footurl{https://scratch.mit.edu/}
+is more than enough.  With that out of the way, how about we get right
+to it?
