@@ -11,7 +11,7 @@ import subprocess
 
 
 license = 'GPL-3.0-or-later'
-version = 'v0.0.0'
+version = 'v0.1.0'
 
 Export('license')
 Export('version')
