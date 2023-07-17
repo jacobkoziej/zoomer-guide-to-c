@@ -8,10 +8,10 @@ build-backend = 'setuptools.build_meta'
 
 [project]
 name = 'zgtc'
-version = '0.1.0'
+version = '0.1.1'
 dependencies = [
-    'Pygments >= 2.15.1',
-    'pygments-ansi-color >= 0.3.0',
+    'Pygments == 2.15.1',
+    'pygments-ansi-color == 0.3.0',
 ]
 
 [project.entry-points.'pygments.styles']

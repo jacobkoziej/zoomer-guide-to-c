@@ -11,7 +11,7 @@ import subprocess
 
 
 license = 'GPL-3.0-or-later'
-version = 'v0.0.0'
+version = 'v0.1.0'
 
 Export('license')
 Export('version')
@@ -22,7 +22,12 @@ lib   = 'lib/zgtc'
 src   = 'src'
 
 
-env = Environment(tools=['default', 'CommandOutput', 'CommandSubst'])
+env = Environment(tools=[
+    'default',
+    'CommandOutput',
+    'CommandSubst',
+    'Release',
+])
 
 if path := os.environ.get('PATH'):
     env['ENV']['PATH'] = path
@@ -54,6 +59,8 @@ if git:
         encoding='utf-8').stdout.strip()
     Export('version')
 
+env['RELEASE_VERSION'] = version
+
 
 env['zgtc'] = [ ]
 
@@ -76,9 +83,14 @@ Export('venv')
 
 VariantDir(f'{build}/{lib}', lib)
 VariantDir(f'{build}/{src}', src)
-Clean(build, build)
 
 SConscript([
     f'{build}/{lib}/SConscript',
     f'{build}/{src}/SConscript',
 ])
+
+
+Import('zgtc')
+env.Default(zgtc)
+
+env.Release('release', zgtc, GPG_SIGN=True)

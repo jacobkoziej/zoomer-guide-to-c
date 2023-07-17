@@ -24,6 +24,7 @@
 \usepackage{hyperref}
 \hypersetup{
 	colorlinks,
+	linkcolor=black,
 	pdfinfo = {
 		Title    = A Zoomer's Guide to C Programming,
 		Author   = Jacob Koziej,
@@ -40,6 +41,7 @@
 
 \newcounter{solution}
 \counterwithin{solution}{section}
+\RenewDocumentCommand{\thesolution}{}{\arabic{section}.\arabic{solution}}
 
 \directlua{zgtc = require('zgtc')}
 

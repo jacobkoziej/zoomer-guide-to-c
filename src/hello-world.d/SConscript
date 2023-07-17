@@ -18,14 +18,14 @@ env.Depends(run_hello_world_output, compile_hello_world_output)
 
 compile_error_sh = env.CommandSubst('compile-error.sh.in')
 
-compile_error_output = env.CommandOutput([compile_error_sh, compile_hello_world_sh])
+compile_error_output = env.CommandOutput([compile_error_sh, compile_hello_world_mock_sh])
 env.Depends(compile_error_output, 'compile-error-mock.c')
 env.Depends(compile_error_output, 'compile-error.c')
 
 
 compile_warning_sh = env.CommandSubst('compile-warning.sh.in')
 
-compile_warning_output = env.CommandOutput([compile_warning_sh, compile_hello_world_sh])
+compile_warning_output = env.CommandOutput([compile_warning_sh, compile_hello_world_mock_sh])
 env.Depends(compile_warning_output, 'compile-warning-mock.c')
 env.Depends(compile_warning_output, 'compile-warning.c')
 env.SideEffect('compile-warning', compile_warning_output)
