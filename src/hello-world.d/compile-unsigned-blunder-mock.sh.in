@@ -1,1 +1,1 @@
-@CC@ -Wall -Wextra -Wpedantic unsigned-blunder.c
+@CC@ -std=c17 -Wall -Wextra -Wpedantic unsigned-blunder.c
