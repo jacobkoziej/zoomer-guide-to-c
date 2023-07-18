@@ -4,6 +4,14 @@ You can grab the latest release from
 [`<https://github.com/jacobkoziej/zoomer-guide-to-c/releases/latest>`]
 
 
+## [v0.1.1]
+
+> 2023-07-17
+
+Fixed
+* C standard missing when compiling `unsigned-blunder.c`
+
+
 ## [v0.1.0]
 
 > 2023-07-16
@@ -18,4 +26,5 @@ Added
 
 
 [`<https://github.com/jacobkoziej/zoomer-guide-to-c/releases/latest>`]: https://github.com/jacobkoziej/zoomer-guide-to-c/releases/latest
+[v0.1.1]: https://github.com/jacobkoziej/zoomer-guide-to-c/releases/tag/v0.1.1
 [v0.1.0]: https://github.com/jacobkoziej/zoomer-guide-to-c/releases/tag/v0.1.0
