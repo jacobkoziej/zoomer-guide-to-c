@@ -30,3 +30,73 @@ const int epoch = 1970;
 
 \noindent
 Even though it is single line of C, there is quite a lot to unpack here.
+
+\subsection{Primitive Data Types}
+
+C is what's considered a \vocab{strictly typed} language meaning every
+variable \emph{must} have a \vocab{data type} associated with it.
+Luckily, C only has a handful of \vocab{primitive data types}, which
+Table~\ref{table:variable-basics-and-control-flow:c-primitive-data-types}
+neatly showcases.
+
+\providecommand{\zgtcchar}{
+Much as the name might suggest, a \mintinline{c}{char} stores character
+types.  What makes \mintinline{c}{char} special is that it will always
+be the smallest integer type on a \vocab{host architecture} but always
+at least one byte in size.
+}
+\providecommand{\zgtcint}{
+An \mintinline{c}{int} is the default size integer for a platform.
+Typically this is the \vocab{word size} of the processor.  By default,
+integer constants are of type \mintinline{c}{int}.
+}
+\providecommand{\zgtclong}{
+When an \mintinline{c}{int} isn't big enough to store an integer
+constant, we can opt to use a \mintinline{c}{long}.  Typically, these
+are double the size of an \mintinline{c}{int}.  If we'd like to write a
+\mintinline{c}{long} as an integer constant, we need to append either
+\mintinline{c}{l} or \mintinline{c}{L}.
+}
+\providecommand{\zgtcfloat}{
+We can use a \mintinline{c}{float} to represent real numbers, or as
+programmers tend to call them, floating-point constants.  Unlike
+integers, they are encoded as exponentials in memory, meaning we can't
+get arbitrary precision.  To write a floating-point constant, we have to
+append either \mintinline{c}{f} or \mintinline{c}{F}.
+}
+\providecommand{\zgtcdouble}{
+As the name may suggest, a \mintinline{c}{double} is to a
+\mintinline{c}{float} as a \mintinline{c}{long} is to an
+\mintinline{c}{int}.  By default, floating-point constants are of type
+\mintinline{c}{double}.
+}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{lp{0.6\textwidth}l}
+\toprule
+Data Type & Description & Example \\
+\midrule
+\mintinline{c}{char}   & \zgtcchar   & \mintinline{c}{'c'}   \\
+\mintinline{c}{int}    & \zgtcint    & \mintinline{c}{3}     \\
+\mintinline{c}{long}   & \zgtclong   & \mintinline{c}{3l}    \\
+\mintinline{c}{float}  & \zgtcfloat  & \mintinline{c}{3.14f} \\
+\mintinline{c}{double} & \zgtcdouble & \mintinline{c}{3.14}  \\
+\bottomrule
+\end{tabular}
+\caption{C Primitive Data Types}
+\label{table:variable-basics-and-control-flow:c-primitive-data-types}
+\end{table}
+
+\noindent
+Unfortunately for us, this is a gross simplification of C's primitive
+data types, but we'll see in later chapters that strings and
+floating-point types are surprisingly complicated topics.
+
+If it wasn't already evident, programming concepts rely on thousands of
+little lies, or as programmers like to put it, to feel better about
+themselves, these concepts have been \emph{\enquote{abstracted away.}}
+As hard as it might be to believe, thousands of small lies can allow us
+to build quite a strong foundation.  It's only after we've built up this
+strong foundation that it becomes our responsibility to go back and
+reinforce it with the truth, or at the very least, fewer lies.
