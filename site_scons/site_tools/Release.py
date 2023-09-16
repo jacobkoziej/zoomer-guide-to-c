@@ -4,14 +4,17 @@
 #
 # Copyright (C) 2023  Jacob Koziej <jacobkoziej@gmail.com>
 
+from SCons.Defaults import Copy
+
+
 def Release(env, name, source, **kwargs):
     version = kwargs.get('RELEASE_VERSION', env['RELEASE_VERSION'])
 
-    release = f'$SOURCE.file-{version}$SOURCE.suffix'
+    release = f'$SOURCE.base-{version}$SOURCE.suffix'
 
     target = [ ]
 
-    target += env.Command(release, source, action=f'cp $SOURCE {release}', **kwargs)
+    target += env.Command(release, source, action=Copy(f'{release}', '$SOURCE'), **kwargs)
 
     if kwargs.get('GPG_SIGN', False):
         release = target[-1]
